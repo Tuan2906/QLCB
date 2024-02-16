@@ -1,0 +1,98 @@
+body{
+    width: 100%;
+    height: 80%;
+    background-color: antiquewhite !important;
+}
+
+.my-row{
+    box-sizing: border-box;
+}
+
+/* Create four equal columns that floats next to each other */
+.my-column {
+    float: left;
+    width: 20%;
+    max-height: 150px;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+    text-align: center;
+}
+
+/* Clear floats after the columns */
+.my-row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+div.ChiTietChuyenBay{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.columnChiTietChuyenBay{
+    background-color: aquamarine;
+    width: 80%;
+    padding: 10px; 
+    border-radius: 20px;
+}
+.columnChiTietChuyenBay1 button{
+    background-color: yellow;
+    border-radius: 3px;
+    border: 1px solid black;
+}
+
+
+
+
+/* Css phan thong tin chuyen bay */
+.tb-details{
+    width: 80%;
+    padding: 10px; 
+    border-radius: 20px;
+}
+
+
+.time-place{
+    max-width: fit-content;
+    margin-right: 0px;
+}
+.total{
+    color: red;
+}
+
+.straight-line{
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    font-size: 1px;
+    position: relative;
+    background-color: none;
+}
+.straight-line:after {
+    content: '';
+    width: 100%;
+    border-bottom: solid 2px #df1709;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    z-index: 1;
+}
+.straight-line:before{
+    content: '';
+    width: 0%;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    z-index: 1;
+}
+/* End Css phan thong tin chuyen bay */
+
+.btn-next, .btn-back{
+    text-decoration: none;
+    color:black
+}
+.btn-next:hover{
+    color: black;
+}

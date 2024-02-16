@@ -1,0 +1,302 @@
+   {% extends 'layout/banve/base.html' %}
+{% block content %}
+    <div class="main-layout">
+        <div class="flight-container">
+            <form  class="search-form bg-light p-3" action="/chuyenbay" method="post">
+                <div class="form-row mb-3">
+                    <div
+                        class="col-md-3 d-flex justify-content-start align-items-center border-bottom border-warning pb-2">
+                        <i class="fas fa-plane mr-2"></i>
+                        <h5 class="m-0">Tìm kiếm chuyến bay</h5>
+                    </div>
+                </div>
+                <div class="form-row mb-3">
+                    <div class="col-md-4 d-flex align-items-center justify-content-start mt-3">
+                        <div class="checkbox mr-3">
+                            <input type="checkbox" id="one-way" value="one-way" name = 'one-way'checked>
+                            <span>Một Chiều</span>
+                        </div>
+                        <div class="checkbox">
+                            <input type="checkbox" id="round-trip" value="round-trip" name = 'round-trip'>
+                            <span>Khứ Hồi</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row mb-3">
+                    <div class="col-md-4">
+                        <lable>Điểm đi:</lable>
+                        <select title="StartAirport" class="form-control Start" id="StartAirport" name="StartDes" ></select>
+                    </div>
+                    <div class="col-md-4">
+                        <lable>Điểm đến:</lable>
+                        <select title="EndAirport" class="form-control Start" id="EndAirport" name="EndDes" ></select>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="filter-search-position">
+                            <div class="filter-search-passenger">
+                                <p>Người lớn</p>
+                                <div class="adult object">
+                                    <i class="fas fa-minus"></i>
+                                    <input class="text-dark" style="width:40px" value="1" name = 'adultNumber' readonly>
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+                            <div class="filter-search-passenger">
+                                <p>Trẻ em</p>
+                                <div class="children object">
+                                    <i class="fas fa-minus"></i>
+                                    <input class="text-dark" style="width:40px" value="0" name = 'childrenNumber' readonly>
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                            </div>
+<!--                            <div class="filter-search-passenger">-->
+<!--                                <p>Em bé</p>-->
+<!--                                <div class="toddler object">-->
+<!--                                    <i class="fas fa-minus"></i>-->
+<!--                                    <span class="text-dark">0</span>-->
+<!--                                    <i class="fas fa-plus"></i>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row mb-3">
+                    <div class="col-md-3">
+                        <div>Hạng vé:</div>
+                        <select name="level" id="level" class="form-control">
+
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <lable>Ngày đi:</lable>
+                        <input class="form-control" type="date" id="StartDate" name="StartDate">
+                    </div>
+                    <div class="col-md-3">
+                        <lable>Ngày về:</lable>
+                        <input class="form-control" type="date" id="EndDate" name="EndDate" disabled>
+                    </div>
+                    <div class="col-md-3">
+                        <label></label>
+                        <button type="submit" id="SearchButton"  class="btn btn-warning form-control p-0 d-flex align-items-center justify-content-center">
+                            <i class="fas fa-search"></i>
+                            <span class="text-light search-button">Tìm Kiếm</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="container href-choose-place">
+            <div class="py-4">
+                <div class="row">
+                    <div class="col-md-3 my-2 my-md-0">
+                        <div class="vmb-href py-1 d-flex justify-content-between align-items-center">
+                            <a href="javascript:void 0" class="text-body font-weight-bold">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>Quản lý bán vé</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 my-2 my-md-0">
+                        <div class="vmb-href py-1 d-flex justify-content-between align-items-center">
+                            <a href="/2/cam-nang-du-lich.html" class="text-body font-weight-bold">
+                                <i class="fas fa-book"></i>
+                                <span>Cẩm nang</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 my-2 my-md-0">
+                        <div class="vmb-href py-1 d-flex justify-content-between align-items-center">
+                            <a href="/3/khuyen-mai.html" class="text-body font-weight-bold" title="Khuyến mãi">
+                                <i class="fas fa-tag"></i>
+                                <span>Khuyến mãi</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 my-2 my-md-0">
+                        <div class="vmb-href py-1 d-flex justify-content-between align-items-center">
+                            <a href="/1/diem-den-yeu-thich.html" class="text-body font-weight-bold">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Điểm đến yêu thích</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="choose-us">
+            <div class="choose-us-title mb-5 py-4">
+                <h3 class="m-0 text-light vmb-choose-us-title">Câu hỏi thường gặp</h3>
+            </div>
+            <div class="container py-5">
+                <div class="row reason-section">
+                    <div class="col-md-3 col-6 my-2">
+                        <div class="d-flex justify-content-center">
+                            <img src="/static/uploadfile/banveindex/HuongDan.png" alt="Hỗ trợ 24/7" style="width:150px">
+                        </div>
+                        <div class="my-3 text-center">
+                            <p class="m-0 reason-title font-weight-bold" title="Hỗ trợ 24/7">Tài liệu Hướng Dẫn</p>
+                            <div class="reason-des my-3">Tài liệu này sẽ hướng dẫn cho nhân viên bán vé đầy đủ chi tiết về quy trình sử dụng hệ
+                            thống
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6 my-2">
+                        <div class="d-flex justify-content-center">
+                            <img src="/static/uploadfile/banveindex/gia-ve-tot.png" alt="Giá vé tốt nhất">
+                        </div>
+                        <div class="my-3 text-center">
+                            <p class="m-0 reason-title font-weight-bold" title="Giá vé tốt nhất">Giá vé tốt nhất</p>
+                            <div class="reason-des my-3">
+                                Đảm bảo giá vé máy bay tốt nhất cho nhu cầu đặt mua vé máy bay theo các chặng khác nhau
+                                của Khách hàng
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6 my-2">
+                        <div class="d-flex justify-content-center">
+                            <img src="/static/uploadfile/banveindex/dich-vu-da-nang.png" alt="Dịch vụ ưu đãi">
+                        </div>
+                        <div class="my-3 text-center">
+                            <p class="m-0 reason-title font-weight-bold" title="Dịch vụ ưu đãi">Dịch vụ ưu đãi</p>
+                            <div class="reason-des my-3">Vé máy bay nội địa đang giảm giá cực sống khi mua từ 3 vé trở lên</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6 my-2">
+                        <div class="d-flex justify-content-center">
+                            <img src="/static/uploadfile/banveindex/giao-ve-tan-noi.png" alt="Giao vé tận nơi">
+                        </div>
+                        <div class="my-3 text-center">
+                            <p class="m-0 reason-title font-weight-bold" title="Giao vé tận nơi">Giao vé tận nơi</p>
+                            <div class="reason-des my-3"></div>
+                            Giao vé tận nơi nhanh chóng, uy tín, nhận vé mới thanh toán
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-md-12 my-2">
+                    <p class="section-title my-3" title="Aviation partner">Hãng máy bay</p>
+                    <div class="d-flex flex-nowrap flex-md-wrap overflow-auto align-items-center my-3">
+                        <div class="partner-item mb-md-3 mr-5">
+                            <img src="https://www.vemaybay.vn/images/bamboo.png" alt="Bamboo Airways">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-5">
+                            <img src="https://www.vemaybay.vn/images/VietnamAirlines.jpg" alt="VietNam Airlines">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-5">
+                            <img src="https://www.vemaybay.vn/images/vietjet.png" alt="vietjet">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-5">
+                            <img src="https://www.vemaybay.vn/images/cathay.png" alt="Cathay">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-5">
+                            <img src="https://www.vemaybay.vn/images/korean.png" alt="Korean Airline">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-5">
+                            <img src="https://www.vemaybay.vn/images/delta.png" alt="Delta Airline">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-5">
+                            <img src="https://www.vemaybay.vn/images/china-airlines.png" alt="China Airline">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-5">
+                            <img src="https://www.vemaybay.vn/images/philippine-airlines.png" alt="Philippine Airline">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-5">
+                            <img src="https://www.vemaybay.vn/images/thai.png" alt="Thai Airline">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-5">
+                            <img src="https://www.vemaybay.vn/images/jetstar.png" alt="JetStar Airline">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-5">
+                            <img src="https://www.vemaybay.vn/images/eva-air.png" alt="Eva Airline">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-5">
+                            <img src="https://www.vemaybay.vn/images/emirates.png" alt="Emirates Airline">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-5">
+                            <img src="https://www.vemaybay.vn/images/american-airlines.png" alt="American Airline">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-5"><img src="https://www.vemaybay.vn/images/ana.png" alt="Ana Airline">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-5">
+                            <img src="https://www.vemaybay.vn/images/united-airlines.png" alt="United Airline">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-5">
+                            <img src="https://www.vemaybay.vn/images/japan.png" alt="Japan Airline">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-5">
+                            <img src="https://www.vemaybay.vn/images/quatar.png" alt="Quatar Airline">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-5">
+                            <img src="https://www.vemaybay.vn/images/malaysia.png" alt="Malaysia Airline">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-5">
+                            <img src="https://www.vemaybay.vn/images/air-france.png" alt="France Airline">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-5">
+                            <img src="https://www.vemaybay.vn/images/air-canada.png" alt="Canada Airline">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-5">
+                            <img src="https://www.vemaybay.vn/images/turkish-airlines.png" alt="Turkish Airline">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-5">
+                            <img src="https://www.vemaybay.vn/images/hong-kong.png" alt="HongKong Airline">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-5">
+                            <img src="https://www.vemaybay.vn/images/china-southen.png" alt="China Southen Airline">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-5">
+                            <img src="https://www.vemaybay.vn/images/china-eastern.png" alt="China Eastern Airline">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-5">
+                            <img src="https://www.vemaybay.vn/images/air-china.png" alt="China Airline">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 my-2">
+                    <p class="section-title my-3" title="Hotel partners">Đối tác liên kết</p>
+                    <div class="d-flex flex-nowrap flex-md-wrap overflow-auto align-items-center my-3">
+                        <div class="partner-item mb-md-3 mr-4">
+                            <img src="https://www.vemaybay.vn/images/Vinpearl.png" alt="Vinpearl">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-4"><img src="https://www.vemaybay.vn/images/MuongThanh.png" alt="Mường Thanh">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-4">
+                            <img src="https://www.vemaybay.vn/images/Furama.png" alt="Furama">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-4">
+                            <img src="https://www.vemaybay.vn/images/Pullma.png" alt="Pullman">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-4">
+                            <img src="https://www.vemaybay.vn/images/hotel-partner-5.png" alt="The Anam">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-4">
+                            <img src="https://www.vemaybay.vn/images/hotel-partner-6.png" alt="The Beach">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 my-2">
+                    <p class="section-title my-3" title="Payment partner">Ví thanh toán</p>
+                    <div class="d-flex flex-nowrap flex-md-wrap overflow-auto align-items-center my-3">
+                        <div class="partner-item mb-md-3 mr-4 mr-md-2">
+                            <img src="/static/uploadfile/banveindex/stripe.png" width="80" alt="stripe">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-4 mr-md-2">
+                            <img src="/static/uploadfile/banveindex/vnpay.png" width="80" alt="Vnpay">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-4 mr-md-2">
+                            <img src="/static/uploadfile/banveindex/agribank.png" width="80" alt="Argibank">
+                        </div>
+                        <div class="partner-item mb-md-3 mr-4 mr-md-2">
+                            <img src="/static/uploadfile/banveindex/vietcombank.png" width="80" alt="Vietcombank">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

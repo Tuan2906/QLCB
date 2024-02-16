@@ -1,0 +1,33 @@
+<nav class="nav-bar">
+    <ul class="nav-links-container">
+            <li class="nav-link">
+                <a class="logo" href="index.html">
+                    <i class="fas fa-plane"></i>
+                </a>
+            </li>
+            <li class="nav-link">
+                <a href="thi_cong.html">
+                    <span>Thông Báo</span>
+                    <i class="far fa-bell"></i>
+                </a>
+            </li>
+        {% if current_user.is_authenticated %}
+            <li id="logout" class="nav-link">
+            <a href="/logout">
+                <span>Đăng xuất</span>
+                <i class="fas fa-sign-out-alt"></i>
+            </a>
+        </li>
+        {%endif%}
+    </ul>
+     {% if current_user.is_authenticated %}
+        <div id="username">
+            <a href="user-info.html" class="username">
+                {% if hoten: %}
+                    <span>{{hoten.hovaTen}}</span>
+                {%endif%}
+                <i class="far fa-user"></i>
+            </a>
+        </div>
+    {%endif%}
+</nav>

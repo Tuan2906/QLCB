@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sơ đồ ghế máy bay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="/static/js/ThuTuc.js"></script>
+    <link rel="stylesheet" href="static/css/ThuTuc.css">
+    <menu charset="utf-8">
+</head>
+
+<body>
+    <div class="container p-5 bg-white">
+        <div class="container1 text-dark">
+            <div>
+                <img src="static/uploadfile/logovietjet.png" alt="logo-vietjetair" width="100%" height="150px">
+            </div>
+            <div class="p-2">
+                <p style="font-size: 1.5em;"><strong>Hành khách tự làm thủ tục</strong></p>
+            </div>
+            <form action="{{URL}}" method="POST">
+                <div style="padding-left: 0.5em;">
+                <p style="font-size: 1.2em;"><strong>Tìm kiếm đặt chỗ</strong></p>
+                <div class="timKiem">
+                    <div class="p-2">
+                        <strong class="title">Tự làm thủ tục qua web tại đây</strong>
+                        <p>Sẵn sàng cho chuyến bay vui vẻ, thoải mái cùng Vietjet. Bạn có thể làm thủ tục chuyến bay
+                            trực tuyến nhanh chóng, tiện lợi, đơn giản.
+                            <br>
+                            1.Thời gian tự làm thủ tục trực tuyến<br>
+                            - Đối với chuyến bay nội địa khai thác bởi VietjetAir(VJ) xuất phát từ sân bay Nội Bài
+                            (HAN), Đà Nẵng (DAD), Tân Sơn Nhất(SGN),<br>
+                            Cam Ranh (CXR): Áp dụng từ 24 giờ đến 1 giờ trước giừo khởi hành.<br>
+                            - Chưa áp dụng chuyến bay quốc tế khác.<br>
+                            2. Lưu ý: Tự làm thủ tục không áp dụng cho các trường hợp sau:<br>
+                            - Hành khách đi cùng cùng em bé hoặc hành khách đang mang thai.<br>
+                            - Hành khách hạn chế khả năng vận động hoặc cần trợ giúp đặc biệt.<br>
+                            - Có hơn 9 hành khách trong cùng 1 mã đặt chỗ.<br>
+                            - Hành khách có hành lý ký gửi phải đến quầy làm thủ tục gửi hành lý.<br>
+                        </p>
+                        <div id="booking-agreement">
+                            <strong class="title" style="font-size: 1rem;">Đối với các chuyến bay khai thác bởi Vietjet
+                                Thái Lan,vui lòng click <a href="https://example.com" target="_blank">tại
+                                    đây</a></strong>
+                        </div>
+                        <div class="row">
+                            <div class="col p-3 text-dark ">
+                                <strong>Mã đặt chỗ (*)</strong>
+                                {% if err: %}
+                                    <p class="text-warning">{{err}}</p>
+                                {%endif%}
+                                <input type="text" class="form-control p-2 m-1" id="txt-madatcho"
+                                    placeholder="Vi du: UKJMHKO" name="madatcho" >
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-start">
+                            <button type="submit" class="btn btn-primary active ml-2 p-2 m-1">Tìm kiếm</button>
+                        </div>
+
+                            {% if TTchuyenbay %}
+                                <div id="InformationFlight" style="display: block;">
+                                    <div>
+                                        <strong>Mã đặt chỗ:</strong>
+                                        <strong id="show-madatcho"><i>{{maphieu}}</i></strong>
+                                    </div>
+                                    <div class="row information bg-danger text-white rounded-1">
+                                        <div class="col">Chuyến bay</div>
+                                        <div class="col">Máy bay</div>
+                                        <div class="col">Điểm khởi hành</div>
+                                        <div class="col">Điểm đến</div>
+                                        <div class="col">Giờ khởi hành</div>
+                                        <div class="col">Thời gian đi</div>
+                                        <div class="col"></div>
+                                    </div>
+                                    {% for ttcb in TTchuyenbay %}
+                                        <div class="row information bg-warning text-dark rounded-1">
+                                            <div class="col">{{ttcb.MaCB}}</div>
+                                            <div class="col">{{ttcb.MayBay}}</div>
+                                            <div class="col">{{ttcb.Noidi}}</div>
+                                            <div class="col">{{ttcb.Noiden}}</div>
+                                            <div class="col">{{ttcb.NgayKhoiHanh}}</div>
+                                            <div class="col">{{ttcb.ThoiGianDi}}</div>
+                                            <button class="col" type="submit" onclick="get_id_MB({{ttcb.MaLB}},{{ttcb.idMayBay}},'{{ttcb.MaCB}}','{{ttcb.Noidi}}','{{ttcb.Noiden}}','{{ttcb.NgayKhoiHanh}}',{{ttcb.ThoiGianDi}})" style="background-color:transparent; border:none;">Online Checkin
+                                                </button>
+
+                                        </div>
+                                    {%endfor%}
+                                    <div>
+                                        <strong><i>Danh sách hành khách Người lớn</i></strong>
+                                    </div>
+                                    <div class="row information bg-danger text-white rounded-1">
+                                        <div class="col">CCCD</div>
+                                        <div class="col">Họ tên</div>
+                                        <div class="col">Giới tính</div>
+                                        <div class="col">Ngày Sinh</div>
+                                        <div class="col">Số điện thoại</div>
+                                    </div>
+                                    {% for hk in TTKhachHangNL%}
+                                    <div class="row information bg-warning text-dark rounded-1">
+                                        <div class="col" >{{hk.CCCD}}</div>
+                                        <div class="col" >{{hk.Hoten}}</div>
+                                        <div class="col" >{{hk.GioiTinh}}</div>
+                                        <div class="col" >{{hk.NgaySinh}}</div>
+                                        <div class="col" >{{hk.SDT}}</div>
+                                    </div>
+                                    {%endfor%}
+
+                                    {%if TTKhachHangTE:%}
+                                        <div>
+                                            <strong><i>Danh sách hành khách Trẻ Em</i></strong>
+                                        </div>
+                                        <div class="row information bg-danger text-white rounded-1">
+                                            <div class="col">Họ tên</div>
+                                            <div class="col">Giới tính</div>
+                                            <div class="col">Ngày Sinh</div>
+                                            <div class="col">Người bảo hộ</div>
+                                        </div>
+                                        {% for hk in TTKhachHangTE%}
+                                        <div class="row information bg-warning text-dark rounded-1">
+                                            <div class="col" >{{hk.Hoten}}</div>
+                                            <div class="col" >{{hk.GioiTinh}}</div>
+                                            <div class="col" >{{hk.NgaySinh}}</div>
+                                            <div class="col" >{{hk.NguoiBaoHo}}</div>
+                                        </div>
+                                        {%endfor%}
+                                    {%endif%}
+                                </div>
+                            {% endif %}
+                    </div>
+                </div>
+            </div>
+            </form>
+
+        </div>
+    </div>
+</body>
+
+</html>

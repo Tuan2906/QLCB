@@ -1,0 +1,86 @@
+   {% extends 'layout/banve/base.html' %}
+   {% block content %}
+      <h2>Lập lịch</h2>
+    <form  action="/laplich" method="post">
+        <div class="row">
+            <div class="col p-3 text-dark">
+                         <strong>Tuyến bay:</strong>
+                        <select  class="form-select p-2 m-1" name="tuyenbay" id="tuyenbay" required>
+                      </select>
+            </div>
+             <div class="col p-3  text-dark">
+              <label for="macb">Mã chuyến bay:</label>
+                <select  class="form-select p-2 m-1" name="macb" id="macb" disabled>
+                </select>
+            </div>
+            <div class="col p-3 text-dark">
+              <label for="mamb" >Loại máy bay:</label>
+                <select  class="form-select p-2 m-1" name="mamb" id="maybay">
+
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col p-3 text-dark">
+                <strong>Ngày giờ đi:</strong>
+                <input type="datetime-local" min="2024-01-01 00:00:00" max="2024-01-31 23:59:59"
+                       class="form-control p-1 m-1"
+                       name="ngaygiodi" id="ngaygiodi" required>
+            </div>
+            <div class="col p-3 text-dark">
+                <strong >Thời gian bay (giờ):</strong>
+                <input class="form-control p-1 m-1" type="number" name="thoigian" id="thoigian" onblur="check(this)">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col p-3 text-dark">
+                <strong>Số lượng ve hang 1</strong>
+                <input class="form-control p-1 m-1" type="number" name="thoigian" id="soluongve1" readonly>
+            </div>
+            <div class="col p-3 text-dark">
+                <strong >Số lượng ve hang 2</strong>
+                <input class="form-control p-1 m-1" type="number" name="thoigian" id="soluongve2" readonly>
+            </div>
+        </div>
+
+
+        <div class="col p-3 text-dark">
+                 <label for="sanbaytrunggian">Sân bay trung gian:</label>
+                <th><input type="button" value="+" class="expand-btn" style="padding:5px 10px"/></th>
+        </div>
+            <div class="order-table"  style="">
+            </div>
+        <<div class="d-flex" >
+                    <div class="ms-auto p-2 m-2"><button class="common-button2" style="
+                        background: #ed1c24 none repeat scroll 0 0;
+                        border: 0 none;
+                        border-radius: 3px;
+                        color: #ffffff;
+                        font-size: 18px;
+                        line-height: 28px;
+                        margin: 0;
+                        padding: 5px 15px;
+                        text-transform: uppercase;" type="button" onclick="add()">Lưu lich</button></div>
+                </div>
+        <table class="table" id="render">
+            <thead>
+                <tr>
+                    <th>Tuyến bay</th>
+                    <th>Mã chuyến bay</th>
+                    <th>Ten may bay</th>
+
+                    <th>Ngày giờ đi</th>
+                    <th>Thời gian bay (giờ)</th>
+                    <th>Sân bay trung gian</th>
+                    <th>Thoi gian</th>
+                    <th>Ghi chú</th>
+                </tr>
+            </thead>
+        </table>
+         <div class="d-flex" >
+             <div class="ms-auto p-2 m-2">
+                 <input type="submit" value="Xac nhan" id="xacnhan" style="display:none" onclick="addlaplich()">
+                 </div>
+          </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/stylePay.css">
+    <title>Document</title>
+</head>
+<body>
+    <header> 
+        <h2 class="XnThanhCong"><i>Nhập thông tin thanh toán thành công</i></h2>
+
+        <a href="/datvedelss"><button class="btnTroLai">Quay trở lại</button></a>
+
+    </header>
+    <div class="thongBao1">
+        <h2>VÉ ĐIỆN TỬ VÀ XÁC NHẬN HÀNH TRÌNH</h2><br>
+        <a>Đừng quên kiểm tra tình trạng đặc chổ và chuyến bay của bạn với chức năng 
+        <a href="#">tình trạng chuyến bay</a> và <a href="#">Quản lý đặt chổ</a>
+        trên <a href="#">http://hangkhongVietNam.com</a><br>
+        <a>Chế độ này cho phép bạn kiểm tra các thông tin mới nhất về đặt chổ và chuyến bay của bạn</a>
+        </a><br>
+        <form method="get" action="/">
+            <h3>Mã đặt chỗ (số vé):{{madatcho}}</h3>
+            <h2>1. Thông tin đặt chỗ</h2>
+            <div class="hopOutput">
+                {%for c in range(soluong.get("sl_NguoiLon")) %}
+                    <div class="raTen">
+                      <label for="lbTenChu">Tên hành khách thứ {{c+1}} :{{nguoiLon[c]['hoten']}}</label>
+                    </div>
+                {%endfor%}
+                {%for c in range(soluong.get("sl_TreEm")) %}
+                    <div class="raTen">
+                      <label for="lbTenChu">Tên Trẻ Em thứ {{c+1}} :{{treEm[c]['hotenTreEm']}}</label>
+                    </div>
+                {%endfor%}
+                <div class="raTrangThai">
+                  <label for="lbSoThe">Trang thái đặt chỗ: đã xử lý</label>
+
+                </div>
+                <div class="raNgay">
+                  <label for="lbNgayDat">Ngày đặt:{{ngaydat}}</label>
+                </div>
+                {%if nguoiLon[0]["hoten"]: %}
+                  <h2>2.Thông Tin Liên Hệ</h2>
+                    <div class="raLienlac">
+                      <label >Liên lạc :{{lienHe.get("SĐT")}}</label>
+
+                    </div>
+                    <div class="raEmail">
+                      <label>Email :{{lienHe.get("Email")}}</label>
+                {%endif%}
+                </div>
+                <div class="nhapTien">
+                  <h3>Lưu ý:
+                      Chúng tôi đã gửi thông tin Phiếu đặt chỗ qua Email cá nhân. Vui lòng check Email!!!
+                  </h3>
+                </div>
+        </form>
+    </div>
+</body>
+</html>

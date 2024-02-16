@@ -1,0 +1,20 @@
+{% extends 'layout/banve/base.html' %}
+
+{% block content %}
+{%if err_login %}
+            <h2 class="err" style="color: red">{{err_login}} </h2>
+{%endif%}
+ <div class="sg">
+        <form method="post">
+            <h2>SIGN IN</h2>
+            <h4>USERNAME</h4>
+            <input type="text" placeholder="NguyenVanTeo" id="email" class="txt" name="username" required><br>
+            <div id="baoloi1" ></div>
+            <h4>PASSWORD</h4>
+            <div class="pass"><input type="PASSWORD" placeholder="Password" id="Password" class="txt" name="password" required><i class="fa-solid fa-eye-slash" id="icon"  onclick="showPass(this)"></i><br></div>
+            <div id="baoloi2"></div>
+            <input type="checkbox"> <label>Remember me</label>
+            <input type="submit" id="SG" value="SIGN IN">
+        </form>
+        </div>
+{% endblock %}

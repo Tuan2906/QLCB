@@ -1,0 +1,61 @@
+.cover{
+    width:100%;
+    height:180px;
+    position:relative;
+}
+.swiper-wrapper{
+    width: max-content;
+
+}
+.swiper{
+    width: 1450px;
+    max-width: 100%;
+    overflow: auto;
+    margin: auto;
+    scroll-snap-type: both; /*can chinh slide*/
+    scroll-behavior: smooth;
+}
+.swiper::-webkit-scrollbar{
+    display: none;
+}
+.swiper-slide{
+    width: 295px;
+    height: 350px;
+    background-color: #000000;
+    text-align: center;
+    margin: 20px;
+    border-radius: 10px;
+    opacity: .6;
+    color: #fff;
+    scroll-snap-align:start;
+}
+.swiper-pagination{
+    text-align: center;
+}
+.swiper-pagination button{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #00000044;
+    color: #EAEAEA;
+    font-weight: bold;
+    filter: brightness(200%);
+    position: absolute;
+    border: 1px solid #fff;
+}
+#next{
+    right: 0%;
+        top:40%;
+}
+#prev{
+    left: 0%;
+    top:40%;
+}
+.card-header{
+    display:flex;
+}
+.btn-form {
+    width: 100px;
+    height: 50px;
+    margin-top: 40px;
+}

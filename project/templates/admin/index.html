@@ -1,0 +1,22 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+       {% if not current_user.is_authenticated %}
+                <div class="container">
+                    <h1 class="text-center">LOGIN</h1>
+                    <form method="post" action="{{ url_for('sign_admin') }}">
+                        <div class="form-group">
+                            <input type="text" name="username" class="form-control" placeholder="Enter username..." />
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password" class="form-control" placeholder="Enter password..." />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Login" class="btn btn-danger" />
+                        </div>
+                    </form>
+                </div>
+        {% else %}
+                <h1>Welcome back {{ current_user.nhanvien.hovaTen }}</h1>
+        {% endif %}
+{% endblock %}

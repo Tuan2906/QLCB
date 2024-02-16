@@ -1,0 +1,117 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <form class="d-flex">
+                <div class="form-group col-md-5">
+                    <input type="text" name="month" placeholder="Nhập tháng..." class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <input type="submit" value="Thống kê" class="btn btn-info">
+                </div>
+                <div class="form-group col-sm-3">Chọn loại:</div>
+                <div class="form-group col-md-2" >
+                    <select name="" id="transform" class="p-2">
+                        <option value="Table" class="p-2">Table</option>
+                        <option value="Chart" class="p-2">Chart</option>
+                        <option value="All" class="p-2">ALL</option>
+                    </select>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <div class="row">
+
+                <div class="col-md-6" id="divtable" style="display:block">
+                    <table class="table">
+                        <tr>
+                            <td>Tên tuyến bay</td>
+                            <td>Doanh thu</td>
+                            <td>Lượt bay</td>
+                             <td>Tỷ lệ </td>
+                        </tr>
+                        {% for c in general_states %}
+                        <tr>
+                            <td> {{ c[0] }}</td>
+                            <td> {{ "{:,.0f}".format(c[1]) }} </td>
+                            <td> {{ c[2] }} </td>
+                            <td> {{ c[3] | round(1)}} %</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+
+                </div>
+                <div class="col-md-6" id="divchart" style="display:block">
+                    <div>
+                        <canvas id="myChart"></canvas>
+                    </div>
+                    <div style="font-size: 30px; font-weight: bold">Tổng doanh thu: {{ "{:,.0f}".format(sum)}} VNĐ </div>
+                </div>
+
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+          window.onload = function(){
+                      selectedStatic.selectedIndex = -1;
+                     const ctx = document.getElementById('myChart').getContext('2d')
+                     let data = []
+                     let labels = []
+                     let r, g, b
+                     let colors = []
+                     let borderColors = []
+                     {% for c in general_states %}
+                                labels.push('{{ c[0] }}')
+                                data.push({{ c[1] }})
+                                 r = Math.random()*255
+                                 g = Math.random()*255
+                                 b = Math.random()*255
+                                 colors.push(`rgba(${r}, ${g}, ${b}, 0.2)`)
+                                 borderColors.push(`rgba(${r}, ${g}, ${b}, 0.2)`)
+                     {% endfor %}
+                     new Chart(ctx, {
+                                    type: 'doughnut',
+                                    data: {
+                                              labels: labels,
+                                              datasets: [{
+                                                label: '# Doanh thu',
+                                                data: data,
+                                                borderWidth: 1,
+                                                backgroundColor: colors,
+                                                borderColor:  borderColors
+                                              }]
+                                    },
+                                    options:{
+
+                                              scales: {
+                                                y: {
+                                                  beginAtZero: true
+                                                }
+                                              }
+
+                                    }
+                     });
+          }
+
+        var selectedStatic = document.getElementById('transform')
+        var chart = document.getElementById('divchart')
+        var table = document.getElementById('divtable')
+        selectedStatic.addEventListener('change', function() {
+            if(selectedStatic.value == 'Table'){
+                table.style.display = 'block'
+                chart.style.display = 'none'
+            }
+            if(selectedStatic.value == 'Chart'){
+                chart.style.display = 'block'
+                table.style.display = 'none'
+            }
+            if(selectedStatic.value == 'All'){
+                table.style.display = 'block'
+                chart.style.display = 'block'
+            }
+        });
+
+    </script>
+{% endblock %}

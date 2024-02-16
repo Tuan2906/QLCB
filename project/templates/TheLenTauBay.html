@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <title>Thẻ lên tàu bay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/TheLenTauBay.js"></script>
+    <link rel="stylesheet" href="/static/css/TheLenTauBay.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <menu charset="utf-8">
+</head>
+
+<body onload="downloadConfirmationPage({{soluong}})">
+    <div class="container p-5 bg-white">
+        <div class="container1 text-dark">
+            <div>
+                <img src="/static/uploadfile/img.png" alt="logo-vietjetair" width="100%" height="150px">
+            </div>
+            <div class="title1">
+                <h3>THẺ LÊN TÀU BAY</h3>
+            </div>
+            <div class="chuyenDi row">
+                <div class="col">
+                    <div class="common bold" style="font-weight: bold">{{ga_di}}</div>
+                </div>
+                <div class="col logo-plane">
+                    <i class="fa-solid fa-plane" style="font-size: 2rem;"></i>
+                </div>
+                <div class="col">
+                    <div class="common bold" style="font-weight: bold">{{ga_den}}</div>
+                </div>
+            </div>
+            {% if current_user.is_authenticated %}
+                {% for i in range(soluong) %}
+                    <div class="row">
+                        <div class="col">HÀNH KHÁCH</div>
+                        <div class="col">SEQ</div>
+                        <div class="col">SỐ GHẾ</div>
+                        <div class="col"></div>
+                    </div>
+                    <div class="row">
+                         {%if i < lenNL%}
+                            <div class="col bold txtName" >{{hk[i].hoten}}</div>
+                            <div class="col bold txtSEQ" >{{venl[i]}}</div>
+
+                        {%else%}
+                            <div class="col bold txtName" >{{hk[i].hotenTreEm}}</div>
+                            <div class="col bold txtSEQ" >{{vete[i]}}</div>
+
+                        {%endif%}
+                        <div class="col bold txtChair">{{so_ghe[i]}}</div>
+                        <div class="col"></div>
+                    </div>
+                {% endfor %}
+            {%else%}
+                {% for hk in hk_ve %}
+                    <div class="row">
+                        <div class="col" style="font-weight: bold">HÀNH KHÁCH</div>
+                        <div class="col" style="font-weight: bold">SỐ GHẾ</div>
+                        <div class="col" style="font-weight: bold">Mã vé</div>
+                        <div class="col"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col bold txtName" >{{hk.hoTen}}</div>
+                        <div class="col bold txtChair" >{{hk.gheDaDat}}</div>
+                        <div class="col bold txtSEQ">{{hk.MaVe}}</div>
+                        <div class="col"></div>
+                    </div>
+                {%endfor%}
+            {%endif%}
+            <div class="row">
+                <div class="col">NGÀY</div>
+                <div class="col">CHUYẾN BAY</div>
+                <div class="col">MÃ ĐẶT CHỖ</div>
+            </div>
+            <div class="row">
+                <div class="col bold" id="txtDate">{{ngayDi.strftime('%d/%m/%Y')}}</div>
+                <div class="col bold" id="txtFlight">{{maCB}}</div>
+                <div class="col bold" id="txtBookingCode">{{ma_datcho}}</div>
+            </div>
+            <div class="row">
+                <div class="col" style="font-weight: bold">GIỜ RA TÀU BAY</div>
+
+            </div>
+            <div class="row">
+                <div class="col bold" id="txtHours" >{{gioDi.strftime('%H:%M:%S')}}</div>
+            </div>
+            <div class="row">
+                <div class="col d-flex justify-content-start" style="font-weight: bold">Hạng vé</div>
+                <div class="col d-flex justify-content-end" style="font-weight: bold">SSR CODE</div>
+            </div>
+            <div class="row chuyenDi">
+                <div class="col d-flex justify-content-start bold" id="txtRequest">{{hangve}}</div> <!--ECONOMIC/BUSINESS-->
+                <div class="col d-flex justify-content-end bold" id="txtSSR">CBFS</div>
+            </div>
+            <div class="title2">
+                <p><strong>Lưu ý:</strong> Cửa khởi hành sẽ đóng 15 phút trước giờ khởi hành. Hành khách sẽ không được
+                    phép lên tàu bay khi cửa khởi hành đã đóng.</p>
+            </div>
+            <div class="qrcode logo-plane row">
+                <img id="qrCodeImage" src="" alt="qrCodeImage" style="width: 12rem;" >
+                <div class="col-md-3" style="margin-left:auto;margin-top:10%">
+                    <a class="btn btn-danger" href="/delssCI"> Quay Lại trang Checkin</a>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

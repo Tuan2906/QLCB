@@ -1,0 +1,290 @@
+{% extends 'layout/index/base.html' %}
+{% block content %}
+<div class="searchBar">
+    <div class="flight-container">
+        <form  class="search-form bg-light p-3" action="/chuyenbay" method="post">
+            <div class="form-row mb-3">
+                <div
+                    class="col-md-3 d-flex justify-content-start align-items-center border-bottom border-primary pb-2">
+                    <i class="fas fa-plane mr-2"></i>
+                    <h5 class="m-0">Tìm kiếm chuyến bay</h5>
+                </div>
+            </div>
+            <div class="form-row mb-3">
+                <div class="col-md-4 d-flex align-items-center justify-content-start mt-3">
+                    <div class="checkbox mr-3">
+                        <input type="checkbox" id="one-way" value="one-way" checked name = 'one-way'>
+                        <span>Một Chiều</span>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" id="round-trip" value="round-trip" name = 'round-trip'>
+                        <span>Khứ Hồi</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row mb-3">
+                <div class="col-md-4">
+                    <lable>Điểm đi:</lable>
+                    <select title="StartAirport" class="form-control Start" id="StartAirport" name="StartDes" ></select>
+                </div>
+                <div class="col-md-4">
+                    <lable>Điểm đến:</lable>
+                    <select title="EndAirport" class="form-control Start" id="EndAirport" name="EndDes" ></select>
+                </div>
+                <div class="col-md-4">
+                    <div class="filter-search-position">
+                        <div class="filter-search-passenger">
+                            <p>Người lớn</p>
+                            <div class="adult object">
+                                <i class="fas fa-minus"></i>
+                                <input class="text-dark" style="width:40px" value="1" name = 'adultNumber' readonly>
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
+                        <div class="filter-search-passenger">
+                            <p>Trẻ em</p>
+                            <div class="children object">
+                                <i class="fas fa-minus"></i>
+                                <input class="text-dark" style="width:40px" value="0" name = 'childrenNumber' readonly>
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
+<!--                            <div class="filter-search-passenger">-->
+<!--                                <p>Em bé</p>-->
+<!--                                <div class="toddler object">-->
+<!--                                    <i class="fas fa-minus"></i>-->
+<!--                                    <span class="text-dark">0</span>-->
+<!--                                    <i class="fas fa-plus"></i>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                    </div>
+                </div>
+            </div>
+            <div class="form-row mb-3">
+                <div class="col-md-3">
+                    <div>Hạng vé:</div>
+                    <select name="level" id="level" class="form-control">
+
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <lable>Ngày đi:</lable>
+                    <input class="form-control" type="date" id="StartDate" name="StartDate">
+                </div>
+                <div class="col-md-3">
+                    <lable>Ngày về:</lable>
+                    <input class="form-control" type="date" id="EndDate" name="EndDate" disabled>
+                </div>
+                <div class="col-md-3">
+                    <label></label>
+                    <button type="submit" id="SearchButton"  class="btn btn-primary form-control p-0 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-search"></i>
+                        <span class="text-light search-button">Tìm Kiếm</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<main class="">
+    <div class="utility wow animate__animated animate__zoomIn">
+        <div id="usefull">
+            <h1>Câu hỏi thường gặp</h1>
+            <img src="/static/uploadfile/index/decorative-clipart-end-line-1-removebg-preview.png" alt="decorative-clipart-end-line-1" >
+        </div>
+        <div class="utility-dad">
+            <div class="utility-son">
+                <figure class="c4-izmir c4-border-bottom-left c4-image-rotate-right c4-gradient-bottom-right">
+                    <img src="https://gudlogo.com/wp-content/uploads/2019/04/logo-may-bay-42-1030x956.jpg" alt="trang-chu">
+                    <figcaption class="c4-layout-bottom-left" > <p class="c4-reveal-right c4-delay-100"> Đặt vé trực tuyến</p></figcaption>
+                </figure>
+            </div>
+            <div class="utility-son">
+                <figure class="c4-izmir c4-border-cc-3 c4-image-zoom-out c4-gradient-bottom-right">
+                    <img src="https://cdn-icons-png.flaticon.com/512/76/76814.png" alt="flaticon">
+                    <figcaption > <p class="c4-rotate-down-left c4-delay-200"> Chổ ngồi</p></figcaption>
+                </figure>
+            </div>
+            <div class="utility-son">
+                <figure class="c4-izmir c4-border-cc-1 c4-image-zoom-out c4-gradient-bottom-right">
+                    <img src="https://gudlogo.com/wp-content/uploads/2019/04/logo-may-bay-12-768x576.png" alt="education">
+                    <figcaption class="c4-layout-bottom-right"> <p class="c4-reveal-left c4-delay-800">Check-in</p></figcaption>
+                </figure>
+            </div>
+            <div class="utility-son">
+                <figure class="c4-izmir c4-border-center c4-image-zoom-in c4-gradient-top">
+                    <img src="https://hgaviation.vn/wp-content/uploads/2014/09/airplane-57-256.png" alt="chungchi" >
+                    <figcaption> <p class="c4-fade-up"> Nối chuyến</p></figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+    <div class="course_online wow animate__animated animate__zoomIn">
+        <h1>Vé máy bay giá tốt</h1>
+         <div class="list-items" >
+             <span data-aos="fade-up"
+            data-aos-duration="3000" class="row line" >
+                 <!-- for thg div-->
+                 <div class='hov col-lg-3 col-sm-12 col-md-6 m-3'>
+                     <div class="item ">
+                         <h4>
+                             Thông tin vé <br>
+                             <br>
+                             Nơi đi: <br>
+                             <br>
+                             Nơi đến: <br>
+                             <br>
+                             <hr>
+                             Khởi hành: <br>
+                             <br>
+                             Giá: <br>
+                             <br>
+                             Loại vé: <br>
+                             <br>
+                         </h4>
+                        <button data-bs-toggle="modal" data-bs-target="#myModal" >Đặt vé</button>
+                    </div>
+                 </div>
+                 <div class='hov col-lg-3 col-sm-12 col-md-6 m-3'>
+                     <div class="item ">
+                         <h4>
+                             Thông tin vé <br>
+                             <br>
+                             Nơi đi: <br>
+                             <br>
+                             Nơi đến: <br>
+                             <br>
+                             <hr>
+                             Khởi hành: <br>
+                             <br>
+                             Giá: <br>
+                             <br>
+                             Loại vé: <br>
+                             <br>
+                         </h4>
+                        <button data-bs-toggle="modal" data-bs-target="#myModal" >Đặt vé</button>
+                    </div>
+                 </div>
+                 <div class='hov col-lg-3 col-sm-12 col-md-6 m-3'>
+                     <div class="item ">
+                         <h4>
+                             Thông tin vé <br>
+                             <br>
+                             Nơi đi: <br>
+                             <br>
+                             Nơi đến: <br>
+                             <br>
+                             <hr>
+                             Khởi hành: <br>
+                             <br>
+                             Giá: <br>
+                             <br>
+                             Loại vé: <br>
+                             <br>
+                         </h4>
+                        <button data-bs-toggle="modal" data-bs-target="#myModal" >Đặt vé</button>
+                    </div>
+                 </div>
+
+            </span>
+         </div>
+    </div>
+    <div class="teachers">
+        <h1>Địa điểm hấp dẫn</h1>
+        <div class="teacher">
+            <div class="teacher_1">
+                <div class="box_1">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <div class="content">
+                        <h2>Đà Nẵng</h2>
+                        <div>
+                        </div>
+                    </div>
+                    <div class="img">
+                        <img src="/static/uploadfile/index/danang.jpg" alt="thanh">
+                    </div>
+                </div>
+            </div>
+            <div class="teacher_1">
+                <div class="box_1">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <div class="content">
+                        <h2>TP Hồ Chí Minh</h2>
+                        <div>
+
+                        </div>
+                    </div>
+                    <div class="img">
+                        <img src="/static/uploadfile/index/hcm.jpg" alt="thanh">
+                    </div>
+                </div>
+            </div>
+            <div class="teacher_1">
+                <div class="box_1" id="dat">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <div class="content">
+                        <h2>Hải phòng</h2>
+                        <div>
+
+                        </div>
+                    </div>
+                    <div class="img">
+                        <img src="/static/uploadfile/index/haiphong.jpg" alt="thanh">
+                    </div>
+                </div>
+            </div>
+            <div class="teacher_1">
+                <div class="box_1">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <div class="content">
+                        <h2>Phú Quốc</h2>
+                        <div>
+
+                        </div>
+                    </div>
+                    <div class="img">
+                        <img src="/static/uploadfile/index/phuquoc.jpg" alt="thanh">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<section>
+    <div class="map">
+        <div class="head">
+            <h1>BAY CÙNG OPEN-AIRPLANE</h1>
+        </div>
+        <div class="table">
+            <table>
+                <tr>
+                    <td>120+</td>
+                    <td>400+</td>
+                    <td>5000+</td>
+                    <td>200+</td>
+                    <td>7<i class="fa fa-star" aria-hidden="true"></i></td>
+                </tr>
+                <tr>
+                    <td>Đường bay nội địa và quốc tế</td>
+                    <td>Chuyến bay mỗi ngày</td>
+                    <td>Nhân viên thân thiện, tận tình</td>
+                    <td>Tàu bay mới hiện đại, bảo vệ môi trường</td>
+                    <td>Xếp hạng hàng không an toàn cao nhất thế giới mức 7 sao</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,175 @@
+.nav-bar {
+  background-color: #364744;
+}
+
+.flight-container {
+  padding: 10vh 0;
+  margin: 0;
+  background-color: #e6be50;
+}
+
+.flight-container .search-form {
+  width: 75%;
+  margin: 0 auto;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 5px 8px #aaa5a5;
+          box-shadow: 0 5px 8px #aaa5a5;
+}
+
+.flight-container .fa-plane {
+  font-size: 30px;
+}
+
+.flight-container .checkbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.flight-container .checkbox input {
+  height: 22px;
+  width: 22px;
+  margin: 0 5px 0 0;
+}
+
+.flight-container .filter-search-position {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.flight-container .filter-search-position .filter-search-passenger {
+  width: 50%;
+  display: inline-block;
+  position: relative;
+}
+
+.flight-container .filter-search-position .filter-search-passenger p {
+  text-align: center;
+}
+
+.flight-container .filter-search-position .filter-search-passenger .object {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px solid gray;
+  padding: 4px 4px;
+  color: #d8a649;
+  font-size: 25px;
+  border-radius: 5px;
+}
+
+.flight-container .filter-search-position .filter-search-passenger .object .fa-plus,
+.flight-container .filter-search-position .filter-search-passenger .object .fa-minus {
+  border-radius: inherit;
+  padding: 1px;
+  border: 2px solid #ee9d41;
+  cursor: pointer;
+}
+
+.flight-container .filter-search-position .filter-search-passenger .tooltip-adult,
+.flight-container .filter-search-position .filter-search-passenger .tooltip-toddler,
+.flight-container .filter-search-position .filter-search-passenger .tooltip-children {
+  display: none;
+  position: absolute;
+  color: #cea04a;
+  top: -40px;
+  left: -60px;
+  -webkit-box-shadow: 0 3px 7px rgba(58, 55, 55, 0.5);
+          box-shadow: 0 3px 7px rgba(58, 55, 55, 0.5);
+  text-align: center;
+  padding: 5px 0;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.flight-container .filter-search-position .filter-search-passenger .tooltip-adult::after,
+.flight-container .filter-search-position .filter-search-passenger .tooltip-children::after,
+.flight-container .filter-search-position .filter-search-passenger .tooltip-toddler::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  bottom: -4px;
+  right: 43px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  background-color: white;
+}
+
+.flight-container .filter-search-position .filter-search-passenger .adult:hover + .tooltip-adult {
+  display: block;
+}
+
+.flight-container .filter-search-position .filter-search-passenger .children:hover + .tooltip-children {
+  display: block;
+}
+
+.flight-container .filter-search-position .filter-search-passenger .toddler:hover + .tooltip-toddler {
+  display: block;
+}
+
+.flight-container .fa-search,
+.flight-container .search-button {
+  font-size: 25px;
+  color: white;
+  margin-left: 10px;
+  text-decoration: none;
+}
+
+.href-choose-place {
+  font-size: 1.2rem;
+}
+
+
+.href-choose-place .vmb-href:after{
+    content: "";
+    display: block;
+    width: 30%;
+    height: 3px;
+    background-color: #000;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    animation: move 5s linear infinite;
+
+
+}
+@keyframes move {
+  50% {left:40%;}
+  100% {right:30%}
+}
+
+.href-choose-place .vmb-href a {
+  color: black;
+}
+
+.choose-us {
+  background-color: aliceblue;
+}
+
+.choose-us .choose-us-title {
+  background-color: #e6be50;
+  text-align: center;
+}
+
+.choose-us .container .reason-section p {
+  font-size: 1.5rem;
+}
+
+.section-title {
+  font-size: 1.8rem;
+}
+/*# sourceMappingURL=index.css.map */

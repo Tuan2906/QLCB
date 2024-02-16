@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
+
+<head>
+    <title>Trang chủ - Đặt vé trực tuyến</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <script src="/static/js/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/css/header.css">
+    <link rel="stylesheet" type="text/css" href="static/css/footer.css">
+    <meta property="og:image" content="../icon/rem.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Koulen&family=Macondo&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="static/css/BanVeIndex.css">
+    <link rel="stylesheet" href="static/boostrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/formSIGN.css">
+    <script src="/static/js/SignIn.js"></script>
+    <style>
+        table.order-list, .table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        table.order-list th, table.order-list td , .table th ,.table td{
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        table.order-list tr.select{
+            width: 200px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+
+
+</head>
+
+<body onload="load_diadiem() ;load_hangve();load_Tuyen(); load_maybay();load_quydinh();load_sb()">
+    {% include 'layout/banve/header.html' %}
+    {% block content %}
+    {% endblock %}
+    {% include 'layout/banve/footer.html' %}
+    <script  src="/static/js/BanVeIndex.js"></script>
+    <script src="/static/js/NVLL.js"></script>
+
+</body>
+</html>

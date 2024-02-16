@@ -1,0 +1,27 @@
+#text-title{
+    background-color: #f00;
+}
+.common{
+    border: 2px solid #000;
+    text-align: center;
+}
+.color{
+    width:4em;
+    height:2em;
+    padding: 2em;
+    margin: 1em;
+    border:2px solid #000;
+}
+.text{
+    text-align: center;
+    margin:auto;
+}
+
+/* CSS được áp dụng khi nút được nhấp vào */
+.common.selected {
+    background-color: yellow !important;
+}
+.information{
+    border: 1px solid black;
+    width:700px;
+}

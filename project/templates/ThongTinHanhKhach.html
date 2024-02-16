@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thông tin hành khách</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="">
+    <menu charset="utf-8">
+</head>
+<body>
+    <div class="container p-5 bg-white">
+       <form method="post" action="/thanhtoan">
+            <div class="container1 text-dark">
+                <h2 class="head-title1">Thông tin hành khách</h2>
+                        {%for i in range (sl.sl_NguoiLon) %}
+                            <div class="row">
+                                <div class="col p-3 text-dark">
+                                    <strong>Người lớn {{i+1}}, họ và tên *</strong>
+                                    <input type="text" class="form-control p-2 m-1 name" id="ngl{{i}}" placeholder="Vi du: Nguyen Van An"
+                                        name="hoten{{i}}" onchange="layid(this)" required>
+                                    <strong>Người lớn {{i+1}},Căn cước công dân*</strong>
+                                    <input type="text" class="form-control p-2 m-1 CCCD" id="CCCD" placeholder="Vi du: 0012..."
+                                        name="CCCD{{i}}" onblur="check_CCCD(this)" required>
+                                </div>
+                                <div></div>
+                                <div class="col p-3 text-dark">
+                                    <strong>Giới tính *</strong>
+                                    <select class="form-select p-2 m-1" name="gioitinh{{i}}" required>
+                                        <option>----</option>
+                                        <option value="1">Nam</option>
+                                        <option value="0">Nữ</option>
+                                    </select>
+                                </div>
+
+                                <div class="col p-3 text-dark">
+                                    <strong>Ngày Sinh</strong>
+                                    <input type="date"
+                                           id="date{{i}}"
+                                           class="form-control p-2 m-1"
+                                           name="ngaysinh_Nglon{{i}}" min="1900-01-01"
+                                           max="2023-12-31" onblur=" checkNgaySinhNguoiLon(this)" required>
+                                </div>
+                                <div class="col p-3 text-dark">
+                                    <strong>Hành lý chiều đi</strong>
+                                    <div class="list-group m-1">
+                                        <a href="#" class="list-group-item disabled" style="background-color: #a9a9aa;">Đã có 20 kg</a>
+                                    </div>
+                                </div>
+                            </div>
+                              {%if i==sl.sl_NguoiLon-1%}
+                                 <p>* Mỗi hành khách được mang theo tối đa 7kg hành lý xách tay</p>
+                              {%endif%}
+                        {%endfor%}
+                        {%for j in range(sl.sl_TreEm)%}
+                             <div class="row">
+                                    <div class="col p-3 text-dark ">
+                                        {%if j == 0 %}
+                                             <strong>Người lớn đi cùng, họ và tên *</strong>
+                                            <select class="form-select p-2 m-1" name="nguoiLon_diCung" id="nglondicung" required>
+                                            </select>
+                                        {%endif%}
+                                    </div>
+                                 <div></div>
+                                     <div class="col p-3 text-dark">
+                                        <strong>Trẻ em {{j+1}}, họ và tên *</strong>
+                                            <input type="text" class="form-control p-2 m-1" id="text" placeholder="Vi du: Nguyen Van An"
+                                                name="hoten_TreEm{{j}}" required>
+                                    </div>
+                                    <div class="col p-3 text-dark">
+                                        <strong>Giới tính *</strong>
+                                        <select  class="form-select p-2 m-1" name="gioitinh_TreEm{{j}}">
+                                            <option>----</option>
+                                            <option value="1">Nam</option>
+                                            <option value="0">Nữ</option>
+                                        </select>
+                                    </div>
+                                    <div class="col p-3 text-dark">
+                                        <strong>Ngày Sinh</strong>
+                                        <input name="ngaySinh_TreEm{{j}}" required
+                                               type="date" class="form-control p-2 m-1 treem"
+                                               name="birthday" min="1900-01-01" max="2023-12-31"
+                                               onblur="checkNgaySinhTreEm(this)">
+                                    </div>
+                             </div>
+                         {%endfor%}
+
+
+                </div>
+                <div class="container2 text-dark">
+                    <hr>
+                    <h2 class="head-title2">Thông tin liên hệ</h2>
+                    <div class="d-flex">
+                        <div style="width: 40%; margin-top:22px">
+                            <strong>Số điện thoại*</strong>
+                            <input type="text" class="form-control p-2 m-1" id="text_sdt" name="sdt" onchange="checkSDT(this)" required>
+                        </div>
+                        <div style="width: 60%; padding: 0 10px;">
+                            <strong>Lưu ý: Email này phải nhập đúng để gửi vé sau khi thanh toán thành công</strong>
+                            <div></div>
+                            <strong>Email*</strong>
+                            <input type="text" class="form-control p-2 m-1" id="text_email" name="email"
+                                  onchange="checkEmail(this)" required>
+                        </div>
+
+                    </div>
+                    <div class="d-flex p-2 m-1">
+                        <div style="width: 40%;">
+                            <div id="booking-agreement">
+                                <input type="checkbox" name="chkAgreeTerms" id="chkAgreeTerms" onclick="checkAddress(this)">
+                                Tôi đồng ý với các
+                                <a target="blank" href="dieu-khoan-su-dung.html">điều kiện &amp; điều khoản</a>
+                                của <span>HÃNG HÀNG KHÔNG VIỆT NAM</span>.
+                                <span class="bookingpreview-agreement-statement"> </span>
+                            </div>
+                        </div>
+                        <div style="width: 60%;">
+                            <div class="d-flex">
+                                <div class="me-auto">{{sl.sl_NguoiLon}} người lớn</div>
+                                <div class="me-auto">{{sl.sl_TreEm}} Trẻ em</div>
+                            </div>
+                            <hr>
+                            <div class="d-flex">
+                                <div class="me-auto">Tổng Cộng:</div>
+                                <div class="ms-auto" name = 'tongtien'>{{ "{:,.0f}".format(tong) }}VNĐ</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex" >
+                    <div class="ms-auto p-2 m-2"><button class="common-button2" style="
+                        background: #ed1c24 none repeat scroll 0 0;
+                        border: 0 none;
+                        border-radius: 3px;
+                        color: #ffffff;
+                        float: right;
+                        font-size: 18px;
+                        line-height: 28px;
+                        margin: 0;
+                        padding: 5px 15px;
+                        text-transform: uppercase;" type="submit" onclick="check_TT()">XÁC NHẬN THÔNG TIN &amp; ĐẶT VÉ</button></div>
+                </div>
+            </div>
+       </form>
+</body>
+  <script src="/static/js/XuLyThongTinHanhKhach.js"></script>
+</html>
