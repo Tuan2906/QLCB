@@ -1,4 +1,3 @@
-Dưới đây là mẫu README cho dự án ứng dụng quản lý chuyến bay:
 
 ---
 
