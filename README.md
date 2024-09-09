@@ -52,7 +52,7 @@ The Flight Management System is a comprehensive application designed to handle v
    ```
 2. Navigate to the project directory:
    ```bash
-   cd flight-management-system
+   cd project
    ```
 3. Set up a virtual environment:
    ```bash
